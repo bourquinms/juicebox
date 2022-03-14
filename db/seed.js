@@ -11,7 +11,8 @@ const {
     createTags,
     createPostTag,
     addTagsToPost,
-    getPostById
+    getPostById,
+    getPostsByTagName
   } = require('./index');
   
 async function createInitialUsers() {
@@ -151,11 +152,15 @@ async function dropTables() {
       const posts = await getAllPosts();
       console.log("Result:", posts);
   
-      console.log("Calling updatePost on posts[0]");
+      console.log("Calling updatePost on posts[1]");
       const updatePostTagsResult = await updatePost(posts[1].id, {
         tags: ["#youcandoanything", "#redfish", "#bluefish"]
       });
       console.log("Result:", updatePostTagsResult);
+
+      console.log("Calling getPostsByTagName with #happy");
+      const postsWithHappy = await getPostsByTagName("#happy");
+      console.log("Result:", postsWithHappy);
   
       console.log("Calling getUserById with 1");
       const albert = await getUserById(1);
